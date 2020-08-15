@@ -1,5 +1,8 @@
 var express = require("express");
 var cors = require("cors");
+var MongoProvider = require("./MongoProvider").MonggoProvider;
+
+var mongoProvider = new MongoProvider();
 
 var app = express();
 
@@ -23,7 +26,7 @@ app.use(function(req, res) {
         console.log(e);
     }
     if (pkg && typeof pkg.handle[func_path] === 'function') {
-        pkg.handle[func_path](req, res);
+        pkg.handle[func_path](req, res, mongoProvider);
     }
 })
 

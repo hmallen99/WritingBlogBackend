@@ -1,11 +1,10 @@
-function getStory(req, res) {
-    var name = req.body.name;
-    var result = {
-        title : name,
-        author: "Henry Allen",
-        body: "lorem ipsumasf jkajsd;lfkja;sd jdkljg;askdjf ",
-    };
-    return res.send(JSON.stringify(result));
+function getStory(req, res, MongoProvider) {
+    var query = { title: req.body.name };
+    MongoProvider.queryDB(query, function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send(JSON.stringify(result));
+    })
 }
 
 exports.getStory = getStory
