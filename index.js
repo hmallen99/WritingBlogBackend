@@ -12,6 +12,10 @@ app.use(cors());
 
 app.use(express.json());
 
+app.get("/", function(req, res) {
+    res.send("Welcome");
+})
+
 app.use(function(req, res) {
     var str = req.originalUrl;
     console.log(str);
